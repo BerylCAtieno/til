@@ -1,0 +1,35 @@
+ref: https://docs.docker.com/ 
+DOCKER IMAGES 
+    They are like container blueprints
+    Usually an executable package that contains everything needed to run software
+    Components
+        App code
+        Runtime environment
+        Libraries
+        Environment variables
+        Dependencies
+        Commands
+    A container is a running instance of an image
+
+DOCKER HUB
+    Finding and sharing docker images
+    Find parent images such as OS and runtime environment
+    ref: https://docs.docker.com/docker-hub/
+
+DOCKER IMAGE CHARACTERISTICS
+    Immutable - every update requires a new image build
+    Layered file systems 
+        first layer usually a parent image, including the OS and runtime environment
+        Example of layered docker image: Python version - source code - dependencies - commands
+
+DOCKERFILE
+    Main file specifying details of an image
+    Run - (docker build image:version .) to build an image after creating dockerfile
+
+DOCKER IGNORE
+    Feature to specify files/folders to be excluded from the image
+    create a .dockerignore' file to specify which files and directories to exclude when building an image
+
+    
+
+

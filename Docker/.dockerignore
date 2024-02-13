@@ -1,0 +1,27 @@
+# Example .dockerignore file
+
+# Ignore temporary files and directories
+.tmp/
+*.tmp
+*.log
+
+# Ignore node_modules directory (for Node.js projects)
+node_modules/
+
+# Ignore virtual environment directories (for Python projects)
+venv/
+env/
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+
+# Ignore Docker-specific files
+Dockerfile*
+.dockerignore
+.dockerignore.example
+
+# Ignore source control files
+.git/
+.gitignore
+
