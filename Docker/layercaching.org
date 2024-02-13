@@ -1,4 +1,4 @@
-LAYER CACHING
+LAYER CACHING \n
     A mechanism to improve efficiency of Docker builds by reusing previously built layers when possible. 
     When you build a Docker image, each instruction in the Dockerfile creates a layer. 
     If a layer hasn't changed since the last build, Docker can reuse it from cache rather than rebuilding it, saving time and resources.
