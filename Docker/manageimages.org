@@ -1,47 +1,71 @@
-1. docker images: List all images available on the local system.
-    
-    docker images
+docker images: List all images available on the local system.
 
-2. docker pull: Pull an image or a repository from a registry.
+#+BEGIN_SRC bash
+docker images
+#+END_SRC 
 
-    docker pull <image_name>:<tag>
+docker pull: Pull an image or a repository from a registry.
 
-3. docker build: Build an image from a Dockerfile.
+#+BEGIN_SRC bash
+docker pull <image_name>:<tag>
+#+END_SRC 
 
-    docker build -t <image_name>:<tag> <path_to_Dockerfile>
+docker build: Build an image from a Dockerfile.
 
-4. docker rmi: Remove one or more images from the local system.
+#+BEGIN_SRC bash
+docker build -t <image_name>:<tag> <path_to_Dockerfile>
+#+END_SRC
 
-    docker rmi <image_id>
+docker rmi: Remove one or more images from the local system.
 
-5. docker tag: Tag an image into a repository.
+#+BEGIN_SRC bash
+docker rmi <image_id>
+#+END_SRC
 
-    docker tag <source_image>:<tag> <target_repository>:<tag>
+docker tag: Tag an image into a repository.
 
-6. docker history: Show the history of an image.
+#+BEGIN_SRC bash
+docker tag <source_image>:<tag> <target_repository>:<tag>
+#+END_SRC
 
-    docker history <image_name>:<tag>
+docker history: Show the history of an image.
 
-7. docker inspect: Display detailed information on one or more images.
+#+BEGIN_SRC bash
+docker history <image_name>:<tag>
+#+END_SRC
 
-    docker inspect <image_name>
+docker inspect: Display detailed information on one or more images.
 
-8. docker save: Save one or more images to a tar archive.
+#+BEGIN_SRC bash
+docker inspect <image_name>
+#+END_SRC
 
-    docker save -o <output_file.tar> <image_name>:<tag>
+docker save: Save one or more images to a tar archive.
 
-9. docker load: Load an image from a tar archive.
+#+BEGIN_SRC bash
+docker save -o <output_file.tar> <image_name>:<tag>
+#+END_SRC
 
-    docker load -i <input_file.tar>
+docker load: Load an image from a tar archive.
 
-10. docker prune: Remove all unused images.
+#+BEGIN_SRC bash
+docker load -i <input_file.tar>
+#+END_SRC
 
-    docker image prune
+docker prune: Remove all unused images.
 
-11. docker search: Search for an image on a Docker registry.
+#+BEGIN_SRC bash
+docker image prune
+#+END_SRC
 
-    docker search <search_term>
+docker search: Search for an image on a Docker registry.
 
-12. docker push: Push an image or a repository to a registry.
+#+BEGIN_SRC bash
+docker search <search_term>
+#+END_SRC
 
-    docker push <image_name>:<tag>
+docker push: Push an image or a repository to a registry.
+
+#+BEGIN_SRC bash
+docker push <image_name>:<tag>
+#+END_SRC
