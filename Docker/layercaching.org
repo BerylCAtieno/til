@@ -1,31 +1,35 @@
-LAYER CACHING
+* Layer Caching
     A mechanism to improve efficiency of Docker builds by reusing previously built layers when possible. 
     When you build a Docker image, each instruction in the Dockerfile creates a layer. 
     If a layer hasn't changed since the last build, Docker can reuse it from cache rather than rebuilding it, saving time and resources.
 
-How layer caching works in Docker:
-    Layer-based Architecture: Docker images are built using a layered architecture. 
-    
-    Layer Identifiers: Docker assigns a unique identifier (usually a hash) to each layer based on its content. 
-                        If the content of a layer changes, its identifier changes as well.
+** How layer caching works in Docker:
+1. Layer-based Architecture
+    + Docker images are built using a layered architecture. 
+2. Layer Identifiers
+    + Docker assigns a unique identifier (usually a hash) to each layer based on its content. 
+    + If the content of a layer changes, its identifier changes as well.
 
-    Cache During Builds: When you build a Docker image, Docker caches each layer. 
-                        If a layer hasn't changed since the last build and its identifier matches the cached layer, 
-                        Docker reuses the cached layer instead of rebuilding it.
+3. Cache During Builds
+    + When you build a Docker image, Docker caches each layer. 
+    + If a layer hasn't changed since the last build and its identifier matches the cached layer, 
+    + Docker reuses the cached layer instead of rebuilding it.
 
-    Invalidation: If any instruction in the Dockerfile changes (e.g., adding a new file, modifying a file), Docker invalidates the cache for subsequent layers. 
-                All subsequent layers are rebuilt, starting from the point of change.
+4. Invalidation
+    + If any instruction in the Dockerfile changes (e.g., adding a new file, modifying a file), Docker invalidates the cache for subsequent layers. 
+    + All subsequent layers are rebuilt, starting from the point of change.
 
-    Leveraging Cache: Leverage layer caching by structuring your Dockerfile efficiently.
-                        For example, placing frequently changing instructions toward the end of the Dockerfile can maximize cache reuse.
+5. Leveraging Cache
+    + Leverage layer caching by structuring your Dockerfile efficiently.
+    + For example, placing frequently changing instructions toward the end of the Dockerfile can maximize cache reuse.
 
-    Docker Build Context: When you initiate a Docker build, Docker sends the entire build context 
-    (usually the directory containing the Dockerfile) to the Docker daemon. 
-    This includes all files and directories within the build context. 
-    Therefore, it's essential to minimize the size of the build context to optimize build performance.
+6. Docker Build Context
+    + When you initiate a Docker build, Docker sends the entire build context (usually the directory containing the Dockerfile) to the Docker daemon. 
+    + This includes all files and directories within the build context. 
+    + Therefore, it's essential to minimize the size of the build context to optimize build performance.
 
-Strategies to make the best use of layer caching:
-    Place instructions that are least likely to change toward the beginning of the Dockerfile.
-    Minimize the number of changes in frequently changing layers to maximize cache reuse.
-    Be cautious with instructions that invalidate cache (e.g., COPY, ADD). Try to minimize their impact by grouping related changes together.
-    By understanding how layer caching works in Docker and structuring your Dockerfile appropriately, you can significantly improve build performance and efficiency.
+** Strategies to make the best use of layer caching:
++ Place instructions that are least likely to change toward the beginning of the Dockerfile.
++ Minimize the number of changes in frequently changing layers to maximize cache reuse.
++ Be cautious with instructions that invalidate cache (e.g., COPY, ADD). Try to minimize their impact by grouping related changes together.
++ By understanding how layer caching works in Docker and structuring your Dockerfile appropriately, you can significantly improve build performance and efficiency.
