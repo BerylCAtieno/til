@@ -1,0 +1,21 @@
+# Docker Volumnes
+An independent file system to share data between containers and between containers, and the host system
+
+# Key aspects
+
+  * Persistent Storage:
+      - Docker volumes provide persistent storage for data generated or used by Docker containers. 
+      - Unlike container filesystems, which are ephemeral and disappear when the container is removed, volumes persist beyond the lifetime of the container.
+
+  * Isolation and Shareability: 
+      - Volumes can be used to isolate data from individual containers or to share data between multiple containers. 
+      - This makes volumes suitable for storing configuration files, databases, application data, log files, and other types of persistent data.
+
+# Types of Volumes:
+
+Docker supports several types of volumes, including named volumes, anonymous volumes, and host-mounted volumes.
+
+  * Named volumes are managed by Docker and can be shared and reused between containers.
+  * Anonymous volumes are automatically created by Docker and are typically used for temporary data that doesn't need to persist between container runs.
+  * Host-mounted volumes map a directory on the host system to a directory in the container.
+  * Volume Drivers: Docker volumes can be created using built-in volume drivers or custom volume drivers. Built-in volume drivers include local, NFS, and cloud storage drivers, while custom volume drivers can be created to support specific storage platforms or services.
