@@ -52,10 +52,18 @@ docker load: Load an image from a tar archive.
 docker load -i <input_file.tar>
 #+END_SRC
 
-docker prune: Remove all unused images.
+docker prune: (Add '-a' to remove dangling resources)
+
+Remove all unused images.
 
 #+BEGIN_SRC bash
 docker image prune
+#+END_SRC
+
+Remove a wider range of unused Docker resources, including images, containers, networks, and volumes. 
+
+#+BEGIN_SRC bash
+docker system prune
 #+END_SRC
 
 docker search: Search for an image on a Docker registry.
