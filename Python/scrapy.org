@@ -1,0 +1,72 @@
+#Preparation
+
+- activate venv
+- pip install scrapy
+
+#Initiate Scrapy project
+
+#+BEGIN_SRC bash
+scrapy startproject <project name>
+#+END_SRC
+
+#Creating spiders (Navigate to Spiders folder)
+
+#+BEGIN_SRC bash
+scrapy genspider <spidername> <site url>
+#+END_SRC
+
+#setting up ipython shell
+- install ipython
+- Go Scrapy.cfg; under [settings], add shell = ipython
+- open shell in terminal
+
+#+BEGIN_SRC bash
+pip install ipython
+scrapy shell
+#+END_SRC
+
+#Building a Spider
+
+- fetch url
+- use response.css() to fetch elements.
+#+BEGIN_SRC python
+response.css(selector) #e.g. response.css('h1')
+response.css('.class') #selecting by class
+response.css(selctor.class) #selecting specific class in a selector
+
+#+END_SRC
+
+#Example
+
+#+BEGIN_SRC python
+import scrapy
+
+
+class ExtractBooksDataSpider(scrapy.Spider):
+    name = "extract_books_data"
+    allowed_domains = ["books.toscrape.com"]
+    start_urls = ["https://books.toscrape.com"]
+
+    def parse(self, response):
+        
+        books = response.css('article.product_pod') #all details of books in first html page
+
+        for book in books:
+            # extract specific details from each book listing
+            yield {
+                "name": book.css('h3 a::text').get(),
+                "price": book.css('.product_price .price_color::text').get(),
+                "url": book.css('h3 a').attrib['href']
+            }
+        
+        next_page = response.css('li.next a ::attr(href)').get() #'next' button link
+        
+        if next_page is not None:
+
+            if 'catalogue/' in next_page:
+                next_page_url = "https://books.toscrape.com/" + next_page
+            else:
+                next_page_url = "https://books.toscrape.com/catalogue/" + next_page
+        
+            yield response.follow(next_page_url, callback=self.parse) #repeats parser for all urls
+#+END_SRC
