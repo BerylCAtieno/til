@@ -1,0 +1,30 @@
+# Scrapy Items
+
+  - Containers used to collect and store data scraped from a website
+  - They allow defining fields (similar to dictionaries) to store the scraped data
+  - Create items in the Items.py file in the following format.
+
+#+BEGIN_SRC python
+import scrapy
+
+class BookItem(scrapy.Item):
+    title = scrapy.Field()
+    author = scrapy.Field()
+    price = scrapy.Field()
+#+END_SRC
+
+#Scrapy Pipelines
+ - used to process scraped items
+ - they provide a mechanism for performing action on scraped items such as cleaning, validating, storing e.t.c.
+ - Example:
+
+ #+BEGIN_SRC python
+ class BookPipeline:
+    def process_item(self, item, spider):
+        # Custom processing logic for each item
+        # For example, you could clean or validate the data here
+        if 'price' in item:
+            item['price'] = float(item['price'].strip('$'))
+        return item
+
+ #+END_SRC
