@@ -1,0 +1,20 @@
+#Palindrome Checker
+
+#+BEGIN_SRC python
+
+def is_palindrome(data):
+    #make all int inputs absolute
+    if type(data) is int:
+        data = abs(data)
+    # Convert data to string representation
+    data_str = str(data)
+    # Compare the string with its reverse
+    return data_str == data_str[::-1]
+
+# Test cases
+print(is_palindrome("radar"))  # True
+print(is_palindrome([1, 2, 3, 2, 1]))  # True
+print(is_palindrome((1, 2, 3, 4, 5)))  # False
+print(is_palindrome(12321))  # True
+
+#+END_SRC
