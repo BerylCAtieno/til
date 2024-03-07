@@ -1,1 +1,34 @@
+# Five Options for Managing Foreign Key Constrants Behavior
 
+1. CASCADE
+ - When a row is deleted from parent table, all corresponding rows in child tables are also deleted.
+2. RESTRICT
+  - When a row is deleted from the parent table, the delete operation is aborted if there are any related rows in the child tables.
+
+#+BEGIN_SRC sql
+-- Creating parent table
+CREATE TABLE parent_table (
+    parent_id SERIAL PRIMARY KEY
+);
+
+-- Creating child table with CASCADE behavior
+CREATE TABLE child_table_cascade (
+    child_id SERIAL PRIMARY KEY,
+    parent_id INT REFERENCES parent_table(parent_id) ON DELETE CASCADE
+);
+
+-- Creating child table with RESTRICT behavior
+CREATE TABLE child_table_restrict (
+    child_id SERIAL PRIMARY KEY,
+    parent_id INT REFERENCES parent_table(parent_id) ON DELETE RESTRICT
+);
+#+END_SRC
+3. SET NULL
+  - When a row is deleted from the parent table, the values of the foreign key columns in the child tables are set to NULL.
+4. SET DEFAULT
+  - When a row is deleted from the parent table, the values of the foreign key columns in the child tables are set to their default values.
+5. NO ACTION
+  - This option is similar to RESTRICT, but it also has the option to be “deferred” to the end of a transaction. 
+  - This means that other cascading deletes can run first, and then this delete constraint will only throw an error if there is referenced data remaining at the end of the transaction.
+
+RESTRICT VS NO ACTION (TODO)
