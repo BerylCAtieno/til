@@ -1,1 +1,35 @@
 # Basic Linux Commands
+
+CURL
+
+  - upload/download data from/to a server
+  - powerful tool for making HTTP requests from terminal
+
+**Example usages:
+
+Fetch content from url and display it on the terminal
+
+#+BEGIN_SRC sh
+  curl http://example.com
+#+END_SRC
+
+Save output to file
+
+#+BEGIN_SRC sh
+  curl -o output.html http://example.com
+#+END_SRC
+
+Send a post request - the -X POST option specifies a POST request, and the -d option sends the specified data in the request body.
+
+#+BEGIN_SRC sh
+  curl -X POST -d "param1=value1&param2=value2" http://example.com
+#+END_SRC
+
+This sends a POST request with JSON data. The -H option adds an HTTP header, in this case, specifying the content type as JSON.
+
+#+BEGIN_SRC sh
+curl -X POST -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}' http://example.com
+#+END_SRC
+
+
+
