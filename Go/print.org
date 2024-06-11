@@ -1,0 +1,84 @@
+* Printing in Go
+
+In Go, the fmt package provides various functions for printing output to the console or other output streams.
+
+** fmt.Print
+
+Usage: =fmt.Print(a ...interface{}) (n int, err error)=
+
+Description: Prints the values passed as arguments to the standard output without appending a newline character.
+
+#+BEGIN_SRC Go
+
+fmt.Print("Hello, ")
+fmt.Print("world!")
+// Output: Hello, world!
+
+#+END_SRC
+
+** fmt.Println
+
+Usage: =fmt.Println(a ...interface{}) (n int, err error)=
+
+Description: Prints the values passed as arguments to the standard output, appending a newline character after printing.
+
+#+BEGIN_SRC Go
+
+fmt.Println("Hello,")
+fmt.Println("world!")
+// Output:
+// Hello,
+// world!
+
+#+END_SRC
+** fmt.Printf
+
+Usage: =fmt.Printf(format string, a ...interface{}) (n int, err error)=
+
+Description: Prints formatted output based on a format string and optional values. It's similar to printf in C.
+
+#+BEGIN_SRC Go
+
+name := "Alice"
+age := 30
+fmt.Printf("Name: %s, Age: %d\n", name, age)
+// Output: Name: Alice, Age: 30
+
+#+END_SRC
+
+** fmt.Fprintf
+
+Usage: =fmt.Fprintf(w io.Writer, format string, a ...interface{}) (n int, err error)=
+
+Description: Prints formatted output to a specified io.Writer (like a file or a network connection) using a format string and optional values.
+
+#+BEGIN_SRC Go
+
+file, err := os.Create("output.txt")
+if err != nil {
+    log.Fatal(err)
+}
+defer file.Close()
+
+fmt.Fprintf(file, "This is a formatted output: %s", "Hello, world!")
+
+#+END_SRC
+
+** fmt.Sprint, fmt.Sprintln, fmt.Sprintf
+Usage:
+
+=fmt.Sprint(a ...interface{}) string=: Returns a string by concatenating the values passed as arguments without appending a newline.
+
+=fmt.Sprintln(a ...interface{}) string=: Returns a string by concatenating the values passed as arguments, appending a newline character.
+
+=fmt.Sprintf(format string, a ...interface{}) string=: Returns a formatted string based on a format string and optional values.
+
+Description: These functions return formatted strings instead of printing to the standard output.
+
+#+BEGIN_SRC Go
+
+formattedString := fmt.Sprintf("Name: %s, Age: %d", "Bob", 25)
+fmt.Println(formattedString)
+// Output: Name: Bob, Age: 25
+
+#+END_SRC
