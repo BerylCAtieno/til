@@ -1,1 +1,33 @@
-structs
+** Structs
+
+Structs in Go are somewhat similar to classes in Python, but they don't have methods attached directly to them. They are used to group together variables (called fields) that belong together.
+
+#+BEGIN_SRC Go
+package main
+
+import "fmt"
+
+// Define a struct
+type Person struct {
+    Name string
+    Age  int
+}
+
+func main() {
+    // Create an instance of the struct
+    p := Person{Name: "Alice", Age: 30}
+    fmt.Println(p)
+}
+#+END_SRC
+
+This is like defining a class in Python but without methods:
+
+#+BEGIN_SRC python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+p = Person(name="Alice", age=30)
+print(p.name, p.age)
+#+END_SRC
