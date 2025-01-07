@@ -1,0 +1,190 @@
+* Bash Scripting: Variables
+  Variables in Bash are used to store and manipulate data. Below are the basics of working with variables.
+
+** 1. Declaring Variables
+   - Variables in Bash are created by assigning a value to a name.
+   - No spaces are allowed around the `=` operator.
+
+   #+BEGIN_SRC bash
+   # Example of variable declaration
+   name="John"
+   age=25
+   #+END_SRC
+
+   **Notes**:
+   - Variable names can contain letters, numbers, and underscores but must not start with a number.
+   - Variables are case-sensitive (`name` and `Name` are different).
+
+** 2. Accessing Variables
+   - To access a variable's value, prepend the variable name with `$`.
+
+   #+BEGIN_SRC bash
+   # Accessing variable values
+   echo "Name: $name"
+   echo "Age: $age"
+   #+END_SRC
+
+** 3. Using Variables in Strings
+   - Variables can be embedded within strings.
+   - Use double quotes `" "` for strings with variables.
+
+   #+BEGIN_SRC bash
+   # Embedding variables in strings
+   echo "Hello, $name! You are $age years old."
+   #+END_SRC
+
+** 4. Types of Variables
+*** a. Local Variables
+    - Declared and used within a script or function.
+    - They are not accessible outside their scope.
+
+    #+BEGIN_SRC bash
+    local_var="I'm local"
+    echo $local_var  # Accessible here
+    #+END_SRC
+
+*** b. Environment Variables
+    - Available to the current session and subprocesses.
+    - Created using `export`.
+
+    #+BEGIN_SRC bash
+    export PATH_TO_SCRIPTS="/usr/local/scripts"
+    echo $PATH_TO_SCRIPTS
+    #+END_SRC
+
+*** c. Special Variables
+    - Predefined by the shell and used for specific purposes.
+
+    | **Variable** | **Description**                       |
+    |--------------+---------------------------------------|
+    | `$0`         | The script's name                    |
+    | `$1, $2...`  | Positional parameters (arguments)    |
+    | `$#`         | Number of arguments                  |
+    | `$?`         | Exit status of the last command      |
+    | `$$`         | Current process ID                  |
+    | `$USER`      | Current user                         |
+
+    Example:
+    #+BEGIN_SRC bash
+    echo "Script name: $0"
+    echo "First argument: $1"
+    echo "Exit status: $?"
+    #+END_SRC
+
+** 5. Variable Scope
+   - By default, variables are global within the script.
+   - Use `local` to restrict a variable's scope to a function.
+
+   Example:
+   #+BEGIN_SRC bash
+   my_function() {
+       local local_var="I am local"
+       echo $local_var  # Accessible here
+   }
+   echo $local_var      # Not accessible here
+   #+END_SRC
+
+** 6. Arithmetic with Variables
+   - Use `$((expression))` for arithmetic operations.
+
+   Example:
+   #+BEGIN_SRC bash
+   num1=10
+   num2=5
+   sum=$((num1 + num2))
+   echo "Sum: $sum"
+   #+END_SRC
+
+** 7. Best Practices
+   - Use descriptive variable names to improve readability.
+   - Quote variables when they may contain spaces or special characters:
+     #+BEGIN_SRC bash
+     file_name="My File.txt"
+     echo "$file_name"  # Correct
+     #+END_SRC
+   - Use `{}` for variable expansion when concatenating:
+     #+BEGIN_SRC bash
+     name="John"
+     echo "Hello, ${name}Doe"  # Correct
+     #+END_SRC
+
+** 8. Commands as Variables
+   In Bash, you can store the result of a command in a variable using command substitution.
+
+*** a. Command Substitution Syntax
+    - The syntax for command substitution is `$(command)` or backticks ``command``.
+    - It allows the output of a command to be assigned to a variable.
+
+    Example:
+    #+BEGIN_SRC bash
+    current_time=$(date)
+    echo "Current date and time: $current_time"
+    #+END_SRC
+
+    **Explanation**:
+    - The `$(date)` command captures the current date and time and stores it in the `current_time` variable.
+
+*** b. Using Commands as Variables
+    - Once the output of a command is assigned to a variable, you can use it just like any other variable.
+
+    Example:
+    #+BEGIN_SRC bash
+    file_count=$(ls -1 | wc -l)
+    echo "There are $file_count files in the current directory."
+    #+END_SRC
+
+    **Explanation**:
+    - The `ls -1` command lists files line by line, and `wc -l` counts the number of lines (i.e., the number of files).
+    - The result is assigned to the `file_count` variable.
+
+*** c. Multiple Commands in a Variable
+    - You can also use complex commands or multiple commands inside a single command substitution.
+
+    Example:
+    #+BEGIN_SRC bash
+    info=$(df -h | grep '/dev/sda1' | awk '{print $4}')
+    echo "Available space on /dev/sda1: $info"
+    #+END_SRC
+
+    **Explanation**:
+    - The `df -h` command shows disk space usage in human-readable format.
+    - The `grep` command filters for the `/dev/sda1` line, and `awk '{print $4}'` extracts the fourth column (available space).
+    - The result is assigned to the `info` variable.
+
+*** d. Using Command Substitution Inside Strings
+    - You can directly embed command substitution into strings for dynamic text.
+
+    Example:
+    #+BEGIN_SRC bash
+    echo "The current user is $(whoami) and the home directory is $(pwd)."
+    #+END_SRC
+
+    **Explanation**:
+    - `$(whoami)` gets the current username.
+    - `$(pwd)` gets the present working directory.
+    - Both are embedded inside the string.
+
+*** e. Limitations and Cautions
+    - The output of a command used in command substitution is treated as a single string.
+    - If the command produces multiple lines or spaces, this could affect how the variable is used.
+      - To handle multiple lines, consider using arrays or handling output properly with `IFS` (Internal Field Separator).
+
+    Example:
+    #+BEGIN_SRC bash
+    list_of_files=$(ls)
+    for file in $list_of_files; do
+        echo "File: $file"
+    done
+    #+END_SRC
+
+    **Explanation**:
+    - `$(ls)` gets the list of files, but if there are spaces in filenames, it may break the loop.
+    - To handle filenames with spaces correctly, use double quotes around `$list_of_files` in the loop.
+
+    Example with proper handling:
+    #+BEGIN_SRC bash
+    list_of_files=$(ls)
+    for file in "$list_of_files"; do
+        echo "File: $file"
+    done
+    #+END_SRC
