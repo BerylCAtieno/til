@@ -1,0 +1,46 @@
+* Loops in Bash with Linux Commands
+** For Loop with Linux Commands
+Example:
+#+begin_src bash
+for file in *.txt; do
+  echo "Processing $file"
+  wc -l "$file"
+done
+#+end_src
+This script processes all `.txt` files in the current directory and prints the line count for each.
+
+** While Loop with Linux Commands
+Example:
+#+begin_src bash
+count=1
+while [ $count -le 5 ]; do
+  echo "Creating file_$count.txt"
+  touch "file_$count.txt"
+  ((count++))
+done
+#+end_src
+This script creates five text files named `file_1.txt` to `file_5.txt`.
+
+** Until Loop with Linux Commands
+Example:
+#+begin_src bash
+until [ -f "stop.txt" ]; do
+  echo "Waiting for stop.txt to be created..."
+  sleep 2
+done
+echo "stop.txt detected!"
+#+end_src
+This script waits until a file named `stop.txt` is created in the current directory and then exits.
+
+** Nested Loops with Linux Commands
+Example:
+#+begin_src bash
+for dir in dir1 dir2; do
+  echo "Entering $dir"
+  for file in "$dir"/*.log; do
+    echo "Archiving $file"
+    gzip "$file"
+  done
+done
+#+end_src
+This script compresses all `.log` files in `dir1` and `dir2` using `gzip`.
