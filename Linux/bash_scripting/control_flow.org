@@ -1,1 +1,48 @@
+* Control Flow in Bash
+** If-Else Statements
+Example:
+#+begin_src bash
+read -p "Enter a number: " num
+if (( num % 2 == 0 )); then
+  echo "The number is even."
+else
+  echo "The number is odd."
+fi
+#+end_src
+
+** Nested If-Else Statements
+Example:
+#+begin_src bash
+read -p "Enter your age: " age
+if (( age < 18 )); then
+  echo "You are a minor."
+elif (( age >= 18 && age <= 60 )); then
+  echo "You are an adult."
+else
+  echo "You are a senior citizen."
+fi
+#+end_src
+
+** Case Statements
+Example:
+#+begin_src bash
+read -p "Enter your favorite color: " color
+case $color in
+  red)
+    echo "Red is bold and vibrant!";;
+  blue)
+    echo "Blue is calm and serene.";;
+  green)
+    echo "Green represents nature.";;
+  *)
+    echo "I don't recognize that color.";;
+esac
+#+end_src
+
+** Ternary Operator (Using `&&` and `||`)
+Example:
+#+begin_src bash
+read -p "Enter a number: " num
+(( num % 2 == 0 )) && echo "Even" || echo "Odd"
+#+end_src
 
