@@ -1,0 +1,105 @@
+* Operators in Bash Scripting
+
+** Arithmetic Operators
+- Addition: `+`
+  Example:
+
+  #+BEGIN_SRC bash
+  result=$((5 + 3))
+  echo $result # Outputs: 8
+  #+END_SRC
+
+- Subtraction: `-`
+  Example:
+
+  #+BEGIN_SRC bash
+  result=$((10 - 7))
+  echo $result # Outputs: 3
+  #+END_SRC
+
+- Multiplication: `*`
+  Example:
+
+  #+BEGIN_SRC bash
+  result=$((4 * 2))
+  echo $result # Outputs: 8
+  #+END_SRC
+
+- Division: `/`
+  Example:
+
+ #+BEGIN_SRC bash
+  result=$((8 / 2))
+  echo $result # Outputs: 4
+  #+END_SRC
+
+- Modulus: `%`
+  Example:
+
+  #+BEGIN_SRC bash
+  result=$((5 % 2))
+  echo $result # Outputs: 1
+  #+END_SRC
+
+** Relational Operators
+- Equal to: `-eq`
+  Example:
+
+  #+BEGIN_SRC bash
+  if [ $x -eq $y ]; then
+    echo "x equals y"
+  fi
+  #+END_SRC
+
+- Not equal to: `-ne`
+  Example:
+  #+BEGIN_SRC bash
+  if [ $x -ne $y ]; then
+    echo "x does not equal y"
+  fi
+  #+END_SRC
+
+- Greater than: `-gt`
+  Example:
+
+  #+BEGIN_SRC bash
+  if [ $x -gt $y ]; then
+    echo "x is greater than y"
+  fi
+  #+END_SRC
+
+- Less than: `-lt`
+  Example:
+
+  #+BEGIN_SRC bash
+  if [ $x -lt $y ]; then
+    echo "x is less than y"
+  fi
+  #+END_SRC
+
+** Logical Operators
+- AND: `&&` or `-a`
+  Example:
+  #+BEGIN_SRC bash
+  if [[ $x -eq 5 && $y -eq 10 ]]; then
+    echo "Both conditions are true"
+  fi
+  #+END_SRC
+
+- OR: `||` or `-o`
+  Example:
+
+  #+BEGIN_SRC bash
+  if [[ $x -eq 5 || $y -eq 10 ]]; then
+    echo "At least one condition is true"
+  fi
+  #+END_SRC
+
+- NOT: `!`
+  Example:
+
+  #+BEGIN_SRC bash
+  if [[ ! $x -eq 5 ]]; then
+    echo "x is not equal to 5"
+  fi
+  
