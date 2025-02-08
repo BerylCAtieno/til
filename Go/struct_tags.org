@@ -1,0 +1,95 @@
+* Struct Tags in Golang
+  Struct tags in Go provide metadata for struct fields, enabling customization for serialization, validation, and database mapping.
+
+** JSON Encoding/Decoding (json tag)
+   #+BEGIN_SRC go
+   type User struct {
+       Name     string `json:"name"`
+       Age      int    `json:"age,omitempty"`
+       Password string `json:"-"`
+   }
+   #+END_SRC
+   - `json:"name"` → Renames field in JSON
+   - `json:"age,omitempty"` → Omits field if empty
+   - `json:"-"` → Excludes field from JSON output
+
+** XML Encoding/Decoding (xml tag)
+   #+BEGIN_SRC go
+   type Book struct {
+       Title  string `xml:"title"`
+       Author string `xml:"author"`
+       Year   int    `xml:"year,omitempty"`
+   }
+   #+END_SRC
+   - Maps struct fields to XML elements
+
+** Database Mapping (gorm, db tags)
+   #+BEGIN_SRC go
+   type Product struct {
+       ID          uint   `gorm:"primaryKey"`
+       Name        string `gorm:"size:100;not null;unique"`
+       Price       float64
+       Description string `gorm:"type:text"`
+   }
+   #+END_SRC
+   - `primaryKey` → Sets ID as primary key
+   - `size:100` → Limits string length
+   - `not null` → Prevents NULL values
+
+** Form Data Parsing (form tag)
+   #+BEGIN_SRC go
+   type LoginForm struct {
+       Username string `form:"username"`
+       Password string `form:"password"`
+   }
+   #+END_SRC
+   - Used in web frameworks (e.g., Gin)
+
+** Environment Variable Mapping (env tag)
+   #+BEGIN_SRC go
+   type Config struct {
+       Port int    `env:"PORT" envDefault:"8080"`
+       Host string `env:"HOST" envDefault:"localhost"`
+   }
+   #+END_SRC
+   - Automatically loads values from env variables
+
+** Input Validation (validate tag)
+   #+BEGIN_SRC go
+   type User struct {
+       Name  string `validate:"required"`
+       Email string `validate:"required,email"`
+       Age   int    `validate:"gte=18,lte=65"`
+   }
+   #+END_SRC
+   - `required` → Field must be provided
+   - `email` → Validates email format
+   - `gte=18,lte=65` → Restricts age range
+
+** Command-line Argument Parsing (arg tag)
+   #+BEGIN_SRC go
+   type Args struct {
+       Port int `arg:"--port,env:PORT" default:"8080"`
+   }
+   #+END_SRC
+   - Maps CLI flags and env variables
+
+** Protocol Buffers (protobuf tag)
+   #+BEGIN_SRC go
+   type Person struct {
+       Name  string `protobuf:"bytes,1,opt,name=name"`
+       Age   int    `protobuf:"varint,2,opt,name=age"`
+       Email string `protobuf:"bytes,3,opt,name=email"`
+   }
+   #+END_SRC
+   - Used in gRPC for structured data transfer
+
+** GraphQL Mapping (graphql tag)
+   #+BEGIN_SRC go
+   type User struct {
+       ID    int    `json:"id" graphql:"id"`
+       Name  string `json:"name" graphql:"name"`
+       Email string `json:"email" graphql:"email"`
+   }
+   #+END_SRC
+   - Ensures consistent field names in GraphQL & JSON
