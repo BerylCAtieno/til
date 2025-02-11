@@ -1,0 +1,55 @@
+* Introduction to Nginx
+  Nginx (pronounced "engine-x") is an open-source web server software. It is known for its high performance, scalability, and ability to handle multiple concurrent connections efficiently.
+
+* Key Features
+  - Web Server: Serves static content like HTML, CSS, images, and videos.
+  - Reverse Proxy: Forwards client requests to backend servers, improving performance and scalability.
+  - Load Balancer: Distributes incoming traffic across multiple backend servers to balance the load.
+  - HTTP Cache: Stores content to improve response times and reduce server load.
+  - SSL/TLS Support: Handles secure HTTPS connections for encrypted traffic.
+
+* Nginx Use Cases
+  - Static File Serving: Serve static content like images, CSS, and JavaScript files.
+  - Application Proxying: Reverse proxy for backend application servers (e.g., Node.js, PHP-FPM, Python).
+  - Load Balancing: Distribute incoming traffic across multiple servers to ensure reliability.
+  - SSL Offloading: Handle SSL/TLS encryption, offloading the burden from backend servers.
+
+* Architecture
+  - Nginx uses a non-blocking, event-driven architecture, which allows it to handle many connections with a small resource footprint.
+  - It can handle thousands of concurrent connections with minimal memory usage.
+
+* Installation
+  To install Nginx on Ubuntu:
+  #+BEGIN_SRC bash
+  sudo apt update
+  sudo apt install nginx
+  #+END_SRC
+
+* Basic Configuration Example
+  - The main configuration file is typically located at `/etc/nginx/nginx.conf`.
+  - A simple server block to serve static files:
+  #+BEGIN_SRC nginx
+  server {
+      listen 80;
+      server_name example.com;
+      
+      root /var/www/html;
+      index index.html;
+      
+      location / {
+          try_files $uri $uri/ =404;
+      }
+  }
+  #+END_SRC
+
+* Testing Configuration
+  - After making changes to the configuration file, test it using:
+  #+BEGIN_SRC bash
+  sudo nginx -t
+  #+END_SRC
+
+* Restarting Nginx
+  - To apply the changes, restart Nginx:
+  #+BEGIN_SRC bash
+  sudo systemctl restart nginx
+  #+END_SRC
