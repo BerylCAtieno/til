@@ -72,11 +72,11 @@ for val in gen:
 ```
 `Explanation:`
 
-- "Start" is printed at the start.
+- `"Start"` is printed at the start.
 
 - First yield 1 pauses the function and gives control to the loop.
 
-- "After first yield" is run when the loop calls next() again.
+- "After first yield" is run when the loop calls `next()` again.
 
 - This continues until the generator is exhausted.
 
@@ -98,11 +98,11 @@ print("Received:", val)
 
 `Explanation:`
 
-- "Start" is printed.
+- `"Start"` is printed.
 
 - return 1 ends the function.
 
-- The line print("This will NOT run") is never reached.
+- The line `print("This will NOT run")` is never reached.
 
 ### Generators Use Cases
 1. `Working with large datasets:` Generators can process large datasets without loading them entirely into memory.
