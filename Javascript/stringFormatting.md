@@ -1,8 +1,8 @@
 ## String Formatting in Javascript
 
-### ✅ **1. Basic concatenation**
+### **1. Basic concatenation**
 
-The classic way — using `+` operator:
+The classic way - using `+` operator:
 
 ```javascript
 const name = "Beryl";
@@ -12,7 +12,7 @@ console.log(message); // Hello, Beryl!
 
 ---
 
-### ✅ **2. Template literals (the modern way)**
+### **2. Template literals**
 
 **Recommended**. Use backticks `` ` `` and `${}` for embedding expressions.
 
@@ -25,7 +25,7 @@ console.log(message); // Hello, Beryl! You are 25 years old.
 
 ---
 
-### ✅ **3. Using `String.prototype.replace`**
+###  **3. Using `String.prototype.replace`**
 
 For simple replacements with placeholders:
 
@@ -45,7 +45,7 @@ console.log(message); // Hi, Beryl. Bye, Beryl.
 
 ---
 
-### ✅ **4. Format function (DIY)**
+###  **4. Format function (DIY)**
 
 JavaScript doesn’t have a built-in `format` method like Python.
 But you can easily make one:
@@ -63,7 +63,7 @@ console.log(message); // Hello, Beryl. You have 5 messages.
 
 ---
 
-### ✅ **5. Internationalization (for numbers, dates)**
+### **5. Internationalization (for numbers, dates)**
 
 For formatted dates/numbers:
 
